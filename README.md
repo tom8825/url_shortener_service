@@ -1,3 +1,5 @@
+## Cloned from a Traversy Media tutorial, for use in a future project
+
 # URL Shortener Service
 
 > API to create short urls using Node, Express and MongoDB
