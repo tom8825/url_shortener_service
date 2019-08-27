@@ -1,4 +1,4 @@
 {
-  "mongoURI": "",
+  "mongoURI": "mongodb+srv://tom8825:Crimson123@url-short-vctim.mongodb.net/test?retryWrites=true&w=majority",
   "baseUrl": "http://localhost:5000"
 }

@@ -1,20 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const validUrl = require('valid-url');
-const shortid = require('shortid');
-const config = require('config');
+const validUrl = require("valid-url");
+const shortid = require("shortid");
+const config = require("config");
 
-const Url = require('../models/Url');
+const Url = require("../models/Url");
 
 // @route     POST /api/url/shorten
 // @desc      Create short URL
-router.post('/shorten', async (req, res) => {
+router.post("/shorten", async (req, res) => {
   const { longUrl } = req.body;
-  const baseUrl = config.get('baseUrl');
+  const baseUrl = config.get("baseUrl");
 
   // Check base url
   if (!validUrl.isUri(baseUrl)) {
-    return res.status(401).json('Invalid base url');
+    return res.status(401).json("Invalid base url");
   }
 
   // Create url code
@@ -28,7 +28,7 @@ router.post('/shorten', async (req, res) => {
       if (url) {
         res.json(url);
       } else {
-        const shortUrl = baseUrl + '/' + urlCode;
+        const shortUrl = baseUrl + "/" + urlCode;
 
         url = new Url({
           longUrl,
@@ -43,10 +43,10 @@ router.post('/shorten', async (req, res) => {
       }
     } catch (err) {
       console.error(err);
-      res.status(500).json('Server error');
+      res.status(500).json("Server error");
     }
   } else {
-    res.status(401).json('Invalid long url');
+    res.status(401).json("Invalid long url --- " + baseUrl, longUrl);
   }
 });
 
